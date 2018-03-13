@@ -36,16 +36,16 @@
  						      .attr("width", w)
  						      .attr("height", h);
 
-      function scale (scaleFactor,width,height) {
+      function scale(scaleFactor, width, height) {
         return d3.geoTransform({
                     point: function(x, y) {
-                    this.stream.point( (x - width/2) * scaleFactor + width/2 , (y - height/2) * scaleFactor + height/2);
+                    this.stream.point( (x - width/2) * scaleFactor + width/4 , -(y - height/2) * scaleFactor + height);
                   }
               });
       }
 
       //Define Geopath
-      var path = d3.geoPath().projection(scale(0.05,w,h))
+      var path = d3.geoPath().projection(scale(0.06,w,h))
 
       // //Load in GeoJSON data
 			// d3.json("us-states.json", function(json) {
