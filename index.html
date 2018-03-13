@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nationwide Counties</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="d3.v4.min.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <select id="states-list" onchange="plotCounties($('#states-list').find(':selected').attr('id'))">
+      <option id="state-00">ALL STATES</option>
+      <option id="state-01">Alabama</option>
+      <option id="state-02">Alaska</option>
+      <option id="state-04">Arizona</option>
+      <option id="state-05">Arkansas</option>
+      <option id="state-06">California</option>
+      <option id="state-08">Colorado</option>
+      <option id="state-09">Connecticut</option>
+      <option id="state-10">Delaware</option>
+      <option id="state-11">District of Columbia</option>
+      <option id="state-12">Florida</option>
+      <option id="state-13">Georgia</option>
+      <option id="state-15">Hawaii</option>
+      <option id="state-16">Idaho</option>
+      <option id="state-17">Illinois</option>
+      <option id="state-18">Indiana</option>
+      <option id="state-19">Iowa</option>
+      <option id="state-20">Kansas</option>
+      <option id="state-21">Kentucky</option>
+      <option id="state-22">Louisiana</option>
+      <option id="state-23">Maine</option>
+      <option id="state-24">Maryland</option>
+      <option id="state-25">Massachusetts</option>
+      <option id="state-26">Michigan</option>
+      <option id="state-27">Minnesota</option>
+      <option id="state-28">Mississippi</option>
+      <option id="state-29">Missouri</option>
+      <option id="state-30">Montana</option>
+      <option id="state-31">Nebraska</option>
+      <option id="state-32">Nevada</option>
+      <option id="state-33">New Hampshire</option>
+      <option id="state-34">New Jersey</option>
+      <option id="state-35">New Mexico</option>
+      <option id="state-36">New York</option>
+      <option id="state-37">North Carolina</option>
+      <option id="state-38">North Dakota</option>
+      <option id="state-39">Ohio</option>
+      <option id="state-40">Oklahoma</option>
+      <option id="state-41">Oregon</option>
+      <option id="state-42">Pennsylvania</option>
+      <option id="state-44">Rhode Island</option>
+      <option id="state-45">South Carolina</option>
+      <option id="state-46">South Dakota</option>
+      <option id="state-47">Tennessee</option>
+      <option id="state-48">Texas</option>
+      <option id="state-49">Utah</option>
+      <option id="state-50">Vermont</option>
+      <option id="state-51">Virginia</option>
+      <option id="state-53">Washington</option>
+      <option id="state-54">West Virginia</option>
+      <option id="state-55">Wisconsin</option>
+      <option id="state-56">Wyoming</option>
+    </select>
+    <button id="button">Enter</button>
+    <script type="text/javascript">
+      //Width and height
+      var w = 1200;
+      var h = 600;
+
+      //Define map projection
+			var projection = d3.geoAlbersUsa()
+								         .translate([w/2, h/2])
+								         .scale([1000]);
+
+      //Define Geopath
+      var path = d3.geoPath()
+                   .projection(projection)
+
+      //Create SVG element
+ 			var svg = d3.select("body")
+ 						      .append("svg")
+ 						      .attr("width", w)
+ 						      .attr("height", h);
+
+      // //Load in GeoJSON data
+			// d3.json("us-states.json", function(json) {
+      //   debugger
+			// 	//Bind data and create one path per GeoJSON feature
+			// 	svg.selectAll("path")
+			// 	   .data(json.features)
+			// 	   .enter()
+			// 	   .append("path")
+			// 	   .attr("d", path)
+			// 	   .style("fill", "grey");
+      //
+			// });
+
+      plotCounties("state-00")
+    </script>
+  </body>
+</html>
