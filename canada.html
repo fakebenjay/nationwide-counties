@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canadian Counties</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="d3.v4.min.js"></script>
+    <script src="canada.js"></script>
+  </head>
+  <body>
+    <select id="province-list" onchange="plotCanadaCounties($('#province-list').find(':selected').attr('id'))">
+      <option id="CA">ALL PROVINCES</option>
+      <option id="AB">Alberta</option>
+      <option id="BC">British Columbia</option>
+      <option id="MB">Manitoba</option>
+      <option id="NB">New Brunswick</option>
+      <option id="NL">Newfoundland and Labrador</option>
+      <option id="NT">Northwest Territories</option>
+      <option id="NS">Nova Scotia</option>
+      <option id="NU">Nunavut</option>
+      <option id="ON">Ontario</option>
+      <option id="PE">Prince Edward Island</option>
+      <option id="QC">Quebec</option>
+      <option id="SK">Saskatchewan</option>
+      <option id="YT">Yukon</option>
+    </select>
+    <div id="infobox">Select a county!</div>
+    <script type="text/javascript">
+      //Width and height
+      var w = 1200;
+      var h = 600;
+
+      //Create SVG element
+ 			var svg = d3.select("body")
+ 						      .append("svg")
+ 						      .attr("width", w)
+ 						      .attr("height", h);
+
+      function scale (scaleFactor,width,height) {
+        return d3.geoTransform({
+                    point: function(x, y) {
+                    this.stream.point( (x - width/2) * scaleFactor + width/2 , (y - height/2) * scaleFactor + height/2);
+                  }
+              });
+      }
+
+      //Define Geopath
+      var path = d3.geoPath().projection(scale(0.05,w,h))
+
+      // //Load in GeoJSON data
+			// d3.json("us-states.json", function(json) {
+      //   debugger
+			// 	//Bind data and create one path per GeoJSON feature
+			// 	svg.selectAll("path")
+			// 	   .data(json.features)
+			// 	   .enter()
+			// 	   .append("path")
+			// 	   .attr("d", path)
+			// 	   .style("fill", "grey");
+      //
+			// });
+
+      $(document).ready(function() {
+        plotCanadaCounties("CA")
+      })
+    </script>
+  </body>
+</html>
