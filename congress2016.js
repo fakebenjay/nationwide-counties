@@ -110,14 +110,23 @@ function plotDistricts(stateID) {
 }
 
 function slider() {
-  var sliderVal = document.getElementById('distSlider').value
+  var slider = document.getElementById('distSlider')
+  var sliderVal = slider.value
 
-  document.querySelectorAll('path').forEach((district) => {
-    if (parseInt(district.getAttribute('district-name').split('-')[1]) > sliderVal) {
-      debugger
-      district.hidden = true
+  $('path').each(function() {
+    if (parseInt(this.getAttribute('district-name').split('-')[1]) > sliderVal) {
+      $(this).hide()
     } else {
-      district.hidden = false
+      $(this).show()
     }
   })
+
+  // document.querySelectorAll('path').forEach((district) => {
+  //   if (parseInt(district.getAttribute('district-name').split('-')[1]) > sliderVal) {
+  //     debugger
+  //     district.hidden = true
+  //   } else {
+  //     district.hidden = false
+  //   }
+  // })
 }
