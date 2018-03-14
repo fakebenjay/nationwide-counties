@@ -8,7 +8,7 @@
     <script src="congress2016.js"></script>
   </head>
   <body>
-    <input type="range" min="1" max="53" value="53" step="1" class="slider" id="myRange" onchange="plotDistricts($('#states-list').find(':selected').attr('id'))">
+    <input type="range" min="1" max="53" value="53" step="1" class="slider" id="distSlider" oninput="slider()">
     <br>
     <select id="states-list" onchange="plotDistricts($('#states-list').find(':selected').attr('id'))">
       <option id="state-00">ALL STATES</option>
@@ -67,6 +67,7 @@
     </select>
     <div id="infobox">Select a district!</div>
     <script type="text/javascript">
+
       //Width and height
       var w = 1200;
       var h = 600;

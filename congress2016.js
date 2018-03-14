@@ -1,5 +1,6 @@
 function plotDistricts(stateID) {
   var stateNum = stateID.split("-")[1]
+  var sliderVal = document.getElementById('distSlider').value
 
   return d3.json("congress2016.json", function(json) {
     var districtList = json.features.map((district) => {
@@ -11,7 +12,7 @@ function plotDistricts(stateID) {
     })
 
     var state = json.features.filter((district) => {
-      if (districtList.includes(district.properties.CD115FP) && parseInt(district.properties.CD115FP) <= document.getElementById('myRange').getAttribute("value")) {
+      if (districtList.includes(district.properties.CD115FP) && parseInt(district.properties.CD115FP) <= sliderVal) {
         return district
       }
     })
@@ -105,5 +106,18 @@ function plotDistricts(stateID) {
          d3.selectAll(`[district-name="district-${state.properties.CD115FP.toLowerCase().split(" ").join("-").split(".").join("").split("'").join("")}"]`)
            .attr("fill", "#3768B7")
        });
+  })
+}
+
+function slider() {
+  var sliderVal = document.getElementById('distSlider').value
+
+  document.querySelectorAll('path').forEach((district) => {
+    if (parseInt(district.getAttribute('district-name').split('-')[1]) > sliderVal) {
+      debugger
+      district.hidden = true
+    } else {
+      district.hidden = false
+    }
   })
 }
