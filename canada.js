@@ -35,6 +35,10 @@ function plotCanadaCounties(provID) {
 
     console.log(province)
 
+    province.forEach((p) => {
+      console.log(p.properties.name)
+    })
+
     //Bind data and create one path per GeoJSON feature
     svg.selectAll("path").remove()
 
