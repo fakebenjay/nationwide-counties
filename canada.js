@@ -47,7 +47,7 @@ function plotCanadaCounties(provID) {
        .attr("stroke", "grey")
        .attr("fill", "#FF0000")
        .attr("county-name", function(province) {
-         var cn = province.properties.name.toLowerCase().split(" ").join("-").split("/").join("").split(".").join("").split("'").join("").split(", ").join("-")
+         var cn = province.properties.name.toLowerCase().split("/").join("").split(" ").join("-").split(".").join("").split("'").join("").split(", ").join("-")
          return cn
        })
        .attr("province-name", function(province) {
@@ -57,18 +57,18 @@ function plotCanadaCounties(provID) {
          var countyName = province.properties.name
          var type = province.properties.type
          var provinceName = provList[`${province.id.split('.')[1]}`].split("-").join(" ")
-         var occurrences = document.querySelectorAll(`[county-name=${province.properties.name.toLowerCase().split(" ").join("-").split("/").join("").split(".").join("").split("'").join("").split(", ").join("-")}]`).length
+         var occurrences = document.querySelectorAll(`[county-name=${province.properties.name.toLowerCase().split("/").join("").split(" ").join("-").split(".").join("").split("'").join("").split(", ").join("-")}]`).length
 
          d3.select("div#infobox")
            .text(`${countyName} ${type}, ${provinceName} (${occurrences} occurrences)`)
 
-         d3.selectAll(`[county-name=${province.properties.name.toLowerCase().split(" ").join("-").split("/").join("").split(".").join("").split("'").join("").split(", ").join("-")}]`)
+         d3.selectAll(`[county-name=${province.properties.name.toLowerCase().split("/").join("").split(" ").join("-").split(".").join("").split("'").join("").split(", ").join("-")}]`)
            .attr("fill", "white")
        })
        .on("mouseout", function(province) {
          d3.select("div#infobox")
            .text("Select a county!")
-         d3.selectAll(`[county-name=${province.properties.name.toLowerCase().split(" ").join("-").split("/").join("").split(".").join("").split("'").join("").split(", ").join("-")}]`)
+         d3.selectAll(`[county-name=${province.properties.name.toLowerCase().split("/").join("").split(" ").join("-").split(".").join("").split("'").join("").split(", ").join("-")}]`)
            .attr("fill", "#FF0000")
        });
   })
